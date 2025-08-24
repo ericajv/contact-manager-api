@@ -6,6 +6,7 @@ import { envSchema } from 'src/env'
 import { AuthModule } from './auth/auth.module';
 import { AuthenticateController } from './controllers/authenticate-controller';
 import { CreateContactController } from './controllers/create-contact.controller';
+import { FetchContactController } from './controllers/fetch-contact.controller';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CreateContactController } from './controllers/create-contact.controller
     CreateAccountController, 
     AuthenticateController, 
     CreateContactController,
+    FetchContactController,
   ],
   providers: [PrismaService],
 })

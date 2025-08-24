@@ -13,7 +13,7 @@ import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe'
 
 const createAccountBodySchema = z.object({
   name: z.string(),
-  email: z.string().email(),
+  email: z.email(),
   password: z.string(),
 })
 

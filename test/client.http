@@ -24,7 +24,22 @@ Content-Type: application/json
 }
 ###
 
-# @name create_contact 
+# @name create_contact
 POST {{baseUrl}}/contacts
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
+{
+  "name": "joao",
+  "email": "joao@email.com",
+  "phone": "35984147475",
+  "photo": "https://br.freepik.com/fotos-gratis/beagle-bonito-em-um-laco-marrom-escuro_4103224.htm#fromView=keyword&page=1&position=0&uuid=8e1567c3-9edf-4150-acd5-4e9551846450&query=Cachorrinho"
+}
+
+###
+
+# @name fetch_contacts
+GET {{baseUrl}}/contacts?search=j
+Authorization: Bearer {{authToken}}
+
+###
