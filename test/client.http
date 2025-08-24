@@ -64,5 +64,20 @@ DELETE  {{baseUrl}}/contacts/d5d693bd-98cf-45af-805c-22d072e2595d
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
-
 ###
+
+### Upload de arquivo
+POST {{baseUrl}}/upload
+Authorization: Bearer {{authToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="teste.txt"
+Content-Type: text/plain
+
+Aqui vai o conteúdo do arquivo teste.txt
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Acessar arquivo enviado
+GET {{baseUrl}}/uploads/file-1756069494926-438415744.txt
+

@@ -9,6 +9,7 @@ import { CreateContactController } from './controllers/create-contact.controller
 import { FetchContactController } from './controllers/fetch-contact.controller';
 import { UpdateContactController } from './controllers/update-contact.controller';
 import { DeleteContactController } from './controllers/delete-contact.controller';
+import { UploadFileController } from './controllers/upload-file.controller';
 
 @Module({
   imports: [
@@ -24,8 +25,8 @@ import { DeleteContactController } from './controllers/delete-contact.controller
     CreateContactController,
     FetchContactController,
     UpdateContactController,
-    DeleteContactController
-    
+    DeleteContactController,
+    UploadFileController
   ],
   providers: [PrismaService],
 })
