@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { AuthenticateController } from './controllers/authenticate-controller';
 import { CreateContactController } from './controllers/create-contact.controller';
 import { FetchContactController } from './controllers/fetch-contact.controller';
+import { UpdateContactController } from './controllers/update-contact.controller';
+import { DeleteContactController } from './controllers/delete-contact.controller';
 
 @Module({
   imports: [
@@ -21,6 +23,9 @@ import { FetchContactController } from './controllers/fetch-contact.controller';
     AuthenticateController, 
     CreateContactController,
     FetchContactController,
+    UpdateContactController,
+    DeleteContactController
+    
   ],
   providers: [PrismaService],
 })

@@ -1,5 +1,5 @@
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common'
 import { CurrentUser } from 'src/auth/current-user-decorator'
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'
 import { type UserPayload } from 'src/auth/jwt.strategy'
@@ -22,6 +22,7 @@ export class CreateContactController {
   constructor(private prisma:PrismaService) { }
 
   @Post()
+  @HttpCode(201)
   async handle(
     @Body(bodyValidationPipe) body: CreateContactBodySchema,
     @CurrentUser() user: UserPayload,

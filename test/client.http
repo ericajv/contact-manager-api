@@ -43,3 +43,24 @@ GET {{baseUrl}}/contacts?search=j
 Authorization: Bearer {{authToken}}
 
 ###
+
+# @name update_contact
+PUT {{baseUrl}}/contacts/b90dbdaf-37dd-46a4-a8f2-3373d4c80682
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "joaoo",
+  "email": "joaoo@email.com",
+  "phone": "35984147475",
+  "photo": "https://br.freepik.com/fotos-gratis/beagle-bonito-em-um-laco-marrom-escuro_4103224.htm#fromView=keyword&page=1&position=0&uuid=8e1567c3-9edf-4150-acd5-4e9551846450&query=Cachorrinho"
+}
+
+###
+# @name delete_contact
+DELETE  {{baseUrl}}/contacts/d5d693bd-98cf-45af-805c-22d072e2595d
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+###
