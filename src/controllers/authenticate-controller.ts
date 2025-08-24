@@ -13,7 +13,7 @@ import { z } from 'zod'
 
 const authenticateBodySchema = z.object({
   email: z.email(),
-  password: z.string(),
+  password: z.string()
 })
 
 type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>
@@ -49,6 +49,7 @@ export class AuthenticateController {
     const accessToken = this.jwt.sign({ sub: user.id })
 
     return {
+      user,
       access_token: accessToken,
     }
   }

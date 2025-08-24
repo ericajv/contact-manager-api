@@ -10,7 +10,8 @@ const createContactBodySchema = z.object({
   name: z.string(),
   email: z.email(),
   phone: z.string(),
-  photo: z.url()
+  photo: z.string(),
+  reference: z.string()
 })
 
 const bodyValidationPipe = new ZodValidationPipe(createContactBodySchema)
@@ -27,7 +28,7 @@ export class CreateContactController {
     @Body(bodyValidationPipe) body: CreateContactBodySchema,
     @CurrentUser() user: UserPayload,
   ) {
-    const { name, email, phone, photo } = body
+    const { name, email, phone, photo, reference } = body
     const userId = user.sub
     await this.prisma.contact.create({
       data: {
@@ -35,6 +36,7 @@ export class CreateContactController {
         email,
         phone,
         photo,
+        reference,
         userId
       }
     })  

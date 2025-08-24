@@ -10,6 +10,7 @@ import { PrismaService } from 'src/prisma/prisma.service'
 import { hash } from 'bcryptjs'
 import { z } from 'zod'
 import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe'
+import { JwtService } from '@nestjs/jwt'
 
 const createAccountBodySchema = z.object({
   name: z.string(),
@@ -21,7 +22,7 @@ type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>
 
 @Controller('/accounts')
 export class CreateAccountController {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private jwt: JwtService) {}
 
   @Post()
   @HttpCode(201)
@@ -41,7 +42,7 @@ export class CreateAccountController {
       )
     }
 
-     const hashedPassword = await hash(password, 8)
+    const hashedPassword = await hash(password, 8)
 
     const user = await this.prisma.user.create({
       data: {
@@ -51,6 +52,8 @@ export class CreateAccountController {
       },
     })
 
-    return user;
+    const accessToken = this.jwt.sign({ sub: user.id })
+
+    return { user, access_token: accessToken };
   }
 }

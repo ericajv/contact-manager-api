@@ -10,7 +10,8 @@ const updateContactBodySchema = z.object({
   name: z.string(),
   email: z.email(),
   phone: z.string(),
-  photo: z.url()
+  photo: z.string(),
+  reference: z.string()
 })
 
 const bodyValidationPipe = new ZodValidationPipe(updateContactBodySchema)
@@ -27,7 +28,7 @@ export class UpdateContactController {
     @Body(bodyValidationPipe) body: UpdateContactBodySchema,
     @CurrentUser() user: UserPayload,
   ) {
-    const { name, email, phone, photo } = body
+    const { name, email, phone, photo, reference } = body
     const userId = user.sub
     const contact = await this.prisma.contact.findFirst({
       where: { id }
@@ -42,6 +43,7 @@ export class UpdateContactController {
         email,
         phone,
         photo,
+        reference,
         userId
       }
     })
