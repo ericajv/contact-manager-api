@@ -10,7 +10,7 @@ const createContactBodySchema = z.object({
   name: z.string(),
   email: z.email(),
   phone: z.string(),
-  photo: z.string(),
+  photo: z.url(),
   reference: z.string()
 })
 
@@ -30,7 +30,7 @@ export class CreateContactController {
   ) {
     const { name, email, phone, photo, reference } = body
     const userId = user.sub
-    await this.prisma.contact.create({
+    const contact = await this.prisma.contact.create({
       data: {
         name,
         email,
@@ -41,6 +41,6 @@ export class CreateContactController {
       }
     })  
 
-    return 'Contato criado com sucesso!'
+    return { contact }
   }
 }

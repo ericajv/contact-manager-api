@@ -28,8 +28,7 @@ export class FetchContactController {
     const contacts = await this.prisma.contact.findMany({
       where: {
         userId: user.sub,
-        name: search ? { startsWith: search, mode: 'insensitive' } 
-        : undefined
+        name: search ? { startsWith: search, mode: 'insensitive' } : undefined
       }
     })  
 

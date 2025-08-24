@@ -6,7 +6,8 @@ import {
   Post,
   UseInterceptors,
   UploadedFile,
-  UseGuards
+  UseGuards,
+  Request
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -27,12 +28,13 @@ export class UploadFileController {
     }),
   }))
   uploadFile(
+    @Request() request,
     @UploadedFile() file: Express.Multer.File,
     @CurrentUser() user: UserPayload,
   ) {
     return {
       filename: file.filename,
-      path: file.path,
+      path: `${request.protocol}://${request.get('host')}/${file.path}`,
       uploadeBy: user.sub,
     };
   }

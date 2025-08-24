@@ -10,7 +10,7 @@ const updateContactBodySchema = z.object({
   name: z.string(),
   email: z.email(),
   phone: z.string(),
-  photo: z.string(),
+  photo: z.url(),
   reference: z.string()
 })
 

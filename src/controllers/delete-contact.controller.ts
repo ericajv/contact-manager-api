@@ -12,7 +12,7 @@ export class DeleteContactController {
   constructor(private prisma: PrismaService) { }
 
   @Delete('/:id')
-  @HttpCode(204)
+  @HttpCode(200)
   async handle(
     @Param('id') id: string,
     @CurrentUser() user: UserPayload,
@@ -28,6 +28,6 @@ export class DeleteContactController {
       where: { id },
     })
 
-    return 'Contato deletado com sucesso'
+    return { message: "Contato deletado com sucesso" }
   }
 }
